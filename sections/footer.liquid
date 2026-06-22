@@ -1,0 +1,352 @@
+<footer class="site-footer" data-section-id="{{ section.id }}">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-column footer-brand">
+        <a href="{{ routes.root_url }}" class="footer-logo">
+          {% if section.settings.footer_logo != blank %}
+            <img src="{{ section.settings.footer_logo | image_url: width: 200 }}" alt="{{ shop.name | escape }}" width="160" loading="lazy">
+          {% else %}
+            <span class="footer-logo-text">{{ shop.name }}</span>
+          {% endif %}
+        </a>
+        <p class="footer-brand-desc">{{ section.settings.brand_description }}</p>
+        {% if section.settings.show_social %}
+          <div class="footer-social">
+            {% if section.settings.social_facebook != blank %}
+              <a href="{{ section.settings.social_facebook }}" class="footer-social-link" aria-label="Facebook" target="_blank" rel="noopener">
+                {% render 'icon-svg', name: 'facebook' %}
+              </a>
+            {% endif %}
+            {% if section.settings.social_instagram != blank %}
+              <a href="{{ section.settings.social_instagram }}" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener">
+                {% render 'icon-svg', name: 'instagram' %}
+              </a>
+            {% endif %}
+            {% if section.settings.social_pinterest != blank %}
+              <a href="{{ section.settings.social_pinterest }}" class="footer-social-link" aria-label="Pinterest" target="_blank" rel="noopener">
+                {% render 'icon-svg', name: 'pinterest' %}
+              </a>
+            {% endif %}
+            {% if section.settings.social_twitter != blank %}
+              <a href="{{ section.settings.social_twitter }}" class="footer-social-link" aria-label="Twitter" target="_blank" rel="noopener">
+                {% render 'icon-svg', name: 'twitter' %}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% for block in section.blocks %}
+        {% if block.type == 'footer_link_column' %}
+          <div class="footer-column footer-links-column" {{ block.shopify_attributes }}>
+            <h4 class="footer-column-title">{{ block.settings.title }}</h4>
+            <ul class="footer-links">
+              {% if block.settings.link_list != blank %}
+                {% for link in linklists[block.settings.link_list].links %}
+                  <li class="footer-link-item">
+                    <a href="{{ link.url }}" class="footer-link">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p class="footer-copyright">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.copyright_text }}</p>
+        {% if section.settings.show_payment_icons %}
+          <div class="footer-payment">
+            <span class="payment-icon payment-icon--visa">
+              <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="38" height="24" rx="3" fill="#1A1F71"/>
+                <path d="M15.5 16.5l1.8-10h2.9l-1.8 10h-2.9zM26.2 6.7c-.6-.2-1.5-.5-2.6-.5-2.9 0-4.9 1.5-4.9 3.7 0 1.6 1.5 2.5 2.6 3.1 1.2.6 1.5.9 1.5 1.4 0 .8-.9 1.1-1.8 1.1-1.2 0-1.8-.2-2.8-.6l-.4-.2-.4 2.5c.7.3 2 .6 3.3.6 3.1 0 5-1.5 5-3.8 0-1.3-.8-2.3-2.5-3.1-1-.5-1.7-.9-1.7-1.4 0-.5.5-1 1.7-1 1 0 1.7.2 2.2.4l.3.1.4-2.3zM32.5 6.5h-2.2c-.7 0-1.2.2-1.5.9l-4.3 9.1h3l.6-1.6h3.6l.3 1.6h2.7L32.5 6.5zm-3.5 6.1l1.2-3.1.7 3.1h-1.9z" fill="#fff"/>
+                <path d="M12.2 6.5l-2.8 6.8-.3-1.5c-.5-1.7-2.1-3.6-3.9-4.5l2.6 9.2h3l4.5-10h-3.1z" fill="url(#visa-grad)"/>
+                <path d="M7.3 6.5H2.9l-.1.2c3.5.9 5.8 3 6.7 5.6L8.8 7.4c-.1-.7-.6-.9-1.5-.9z" fill="#F9A533"/>
+                <defs><linearGradient id="visa-grad" x1="13.2" y1="13.3" x2="8.1" y2="11.7"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+              </svg>
+            </span>
+            <span class="payment-icon payment-icon--mc">
+              <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="38" height="24" rx="3" fill="#252525"/>
+                <circle cx="15" cy="12" r="8" fill="#EB001B" opacity="0.8"/>
+                <circle cx="23" cy="12" r="8" fill="#F79E1B" opacity="0.8"/>
+                <path d="M19 6.7a8 8 0 010 10.6 8 8 0 000-10.6z" fill="#FF5F00"/>
+              </svg>
+            </span>
+            <span class="payment-icon payment-icon--amex">
+              <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="38" height="24" rx="3" fill="#2E77BC"/>
+                <text x="19" y="15" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="8" font-weight="bold">AMEX</text>
+              </svg>
+            </span>
+            <span class="payment-icon payment-icon--paypal">
+              <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="38" height="24" rx="3" fill="#003087"/>
+                <text x="19" y="15" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="7" font-weight="bold">PayPal</text>
+              </svg>
+            </span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: #2B2118;
+    color: #D9CFC4;
+    padding: 60px 0 0;
+  }
+  .footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(217, 207, 196, 0.15);
+  }
+  .footer-logo {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 16px;
+  }
+  .footer-logo img {
+    max-width: 160px;
+    height: auto;
+  }
+  .footer-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #F9F6F2;
+  }
+  .footer-brand-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #8C7E6F;
+    margin: 0 0 24px;
+    max-width: 280px;
+  }
+  .footer-social {
+    display: flex;
+    gap: 12px;
+  }
+  .footer-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(217, 207, 196, 0.25);
+    border-radius: 50%;
+    color: #D9CFC4;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+  .footer-social-link:hover {
+    border-color: #B87333;
+    color: #B87333;
+    background: rgba(184, 115, 51, 0.08);
+  }
+  .footer-social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+  .footer-column-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #F9F6F2;
+    margin: 0 0 20px;
+    letter-spacing: 0.02em;
+  }
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer-link-item {
+    margin-bottom: 12px;
+  }
+  .footer-link {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    color: #8C7E6F;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s ease;
+  }
+  .footer-link:hover {
+    color: #B87333;
+  }
+  .footer-bottom {
+    padding: 24px 0;
+  }
+  .footer-bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-copyright {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    color: #8C7E6F;
+    margin: 0;
+    letter-spacing: 0.03em;
+  }
+  .footer-payment {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .payment-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+  .payment-icon:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+    .footer-container {
+      padding: 0 20px;
+    }
+    .footer-bottom-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  @media (max-width: 480px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "footer",
+  "class": "footer-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer logo"
+    },
+    {
+      "type": "text",
+      "id": "brand_description",
+      "label": "Brand description",
+      "default": "Handcrafted artisan jewelry, where ancient craft meets modern elegance. Each piece tells a story of tradition and beauty."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show social media icons",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "text",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "text",
+      "id": "social_pinterest",
+      "label": "Pinterest URL"
+    },
+    {
+      "type": "text",
+      "id": "social_twitter",
+      "label": "Twitter URL"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "default": "All rights reserved."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "footer_link_column",
+      "name": "Link column",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Column title",
+          "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "link_list",
+          "label": "Link list"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        {
+          "type": "footer_link_column",
+          "settings": {
+            "title": "Shop",
+            "link_list": "footer"
+          }
+        },
+        {
+          "type": "footer_link_column",
+          "settings": {
+            "title": "Support",
+            "link_list": "footer-support"
+          }
+        },
+        {
+          "type": "footer_link_column",
+          "settings": {
+            "title": "Company",
+            "link_list": "footer-company"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,485 @@
+<header class="navbar{% if section.settings.sticky_header %} navbar--sticky{% endif %}" id="navbar" data-section-id="{{ section.id }}">
+  <nav class="nav-container">
+    <div class="nav-mobile-toggle">
+      <button type="button" class="nav-icon hamburger-btn" aria-label="Open menu" onclick="toggleMobileMenu()">
+        {% render 'icon-svg', name: 'menu' %}
+      </button>
+    </div>
+
+    <div class="logo">
+      {% if section.settings.logo != blank %}
+        <a href="{{ routes.root_url }}" class="logo-link">
+          <img
+            src="{{ section.settings.logo | image_url: width: 300 }}"
+            alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
+            width="{{ section.settings.logo_max_width }}"
+            height="auto"
+            loading="eager"
+            style="max-width: {{ section.settings.logo_max_width }}px;"
+          >
+        </a>
+      {% else %}
+        <a href="{{ routes.root_url }}" class="logo-link logo-text">
+          {{ shop.name }}
+        </a>
+      {% endif %}
+    </div>
+
+    <ul class="nav-links">
+      {% for link in linklists[section.settings.menu].links %}
+        <li class="nav-item{% if link.active %} nav-item--active{% endif %}">
+          <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+          {% if link.links != blank %}
+            <button type="button" class="nav-dropdown-toggle" aria-label="Toggle submenu">
+              {% render 'icon-svg', name: 'chevron-down' %}
+            </button>
+            <ul class="nav-dropdown">
+              {% for childlink in link.links %}
+                <li class="nav-dropdown-item{% if childlink.active %} nav-dropdown-item--active{% endif %}">
+                  <a href="{{ childlink.url }}" class="nav-dropdown-link">{{ childlink.title }}</a>
+                  {% if childlink.links != blank %}
+                    <ul class="nav-sub-dropdown">
+                      {% for grandchildlink in childlink.links %}
+                        <li class="nav-sub-dropdown-item">
+                          <a href="{{ grandchildlink.url }}" class="nav-sub-dropdown-link">{{ grandchildlink.title }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="nav-actions">
+      <button type="button" class="nav-icon search-toggle" aria-label="Search">
+        {% render 'icon-svg', name: 'search' %}
+      </button>
+      <a href="{{ routes.account_url }}" class="nav-icon account-link" aria-label="Account">
+        {% render 'icon-svg', name: 'account' %}
+      </a>
+      <a href="{{ routes.cart_url }}" class="nav-icon cart-btn" aria-label="Cart">
+        {% render 'icon-svg', name: 'cart' %}
+        <span class="cart-count{% if cart.item_count == 0 %} cart-count--hidden{% endif %}">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__title">Menu</span>
+      <button type="button" class="nav-icon mobile-menu__close" aria-label="Close menu" onclick="toggleMobileMenu()">
+        {% render 'icon-svg', name: 'close' %}
+      </button>
+    </div>
+    <ul class="mobile-menu__links">
+      {% for link in linklists[section.settings.menu].links %}
+        <li class="mobile-menu__item{% if link.active %} mobile-menu__item--active{% endif %}">
+          <a href="{{ link.url }}" class="mobile-menu__link">{{ link.title }}</a>
+          {% if link.links != blank %}
+            <button type="button" class="mobile-menu__expand" aria-label="Expand submenu" onclick="toggleMobileSubmenu(this)">
+              {% render 'icon-svg', name: 'plus' %}
+            </button>
+            <ul class="mobile-menu__submenu">
+              {% for childlink in link.links %}
+                <li class="mobile-menu__submenu-item">
+                  <a href="{{ childlink.url }}" class="mobile-menu__submenu-link">{{ childlink.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    <div class="mobile-menu__actions">
+      <a href="{{ routes.account_url }}" class="mobile-menu__action-link">
+        {% render 'icon-svg', name: 'account' %}
+        <span>Account</span>
+      </a>
+      <a href="{{ routes.cart_url }}" class="mobile-menu__action-link">
+        {% render 'icon-svg', name: 'cart' %}
+        <span>Cart ({{ cart.item_count }})</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  (function() {
+    var navbar = document.getElementById('navbar');
+    var sticky = {{ section.settings.sticky_header | json }};
+    var offset = {{ section.settings.announcement_bar_height | default: 40 }};
+
+    function toggleMobileMenu() {
+      var menu = document.getElementById('mobile-menu');
+      if (!menu) return;
+      menu.classList.toggle('mobile-menu--open');
+      document.body.classList.toggle('mobile-menu-open');
+    }
+    window.toggleMobileMenu = toggleMobileMenu;
+
+    function toggleMobileSubmenu(btn) {
+      var item = btn.closest('.mobile-menu__item');
+      var submenu = item.querySelector('.mobile-menu__submenu');
+      if (!submenu) return;
+      var isOpen = submenu.style.display === 'block';
+      submenu.style.display = isOpen ? 'none' : 'block';
+      btn.innerHTML = isOpen
+        ? '{% render "icon-svg", name: "plus" %}'
+        : '{% render "icon-svg", name: "minus" %}';
+    }
+    window.toggleMobileSubmenu = toggleMobileSubmenu;
+
+    if (sticky) {
+      var lastScroll = 0;
+      window.addEventListener('scroll', function() {
+        var currentScroll = window.pageYOffset;
+        if (currentScroll > offset) {
+          navbar.classList.add('navbar--scrolled');
+        } else {
+          navbar.classList.remove('navbar--scrolled');
+        }
+        if (currentScroll > lastScroll && currentScroll > 200) {
+          navbar.classList.add('navbar--hidden');
+        } else {
+          navbar.classList.remove('navbar--hidden');
+        }
+        lastScroll = currentScroll;
+      });
+    }
+  })();
+</script>
+
+<style>
+  .navbar {
+    width: 100%;
+    background-color: #F9F6F2;
+    position: relative;
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .navbar--sticky {
+    position: sticky;
+    top: 0;
+  }
+  .navbar--scrolled {
+    box-shadow: 0 2px 20px rgba(43, 33, 24, 0.08);
+  }
+  .navbar--hidden {
+    transform: translateY(-100%);
+  }
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 40px;
+  }
+  .nav-mobile-toggle {
+    display: none;
+  }
+  .logo {
+    flex-shrink: 0;
+  }
+  .logo-link {
+    display: block;
+    text-decoration: none;
+  }
+  .logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #2B2118;
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-item {
+    position: relative;
+  }
+  .nav-link {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #2B2118;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-link:hover,
+  .nav-item--active .nav-link {
+    color: #B87333;
+  }
+  .nav-dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    display: inline-flex;
+    align-items: center;
+    color: #2B2118;
+  }
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: -16px;
+    min-width: 200px;
+    background: #F9F6F2;
+    box-shadow: 0 8px 30px rgba(43, 33, 24, 0.12);
+    border-radius: 4px;
+    padding: 12px 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: all 0.25s ease;
+    z-index: 100;
+  }
+  .nav-item:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-dropdown-item {
+    position: relative;
+  }
+  .nav-dropdown-link {
+    display: block;
+    padding: 8px 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    color: #2B2118;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .nav-dropdown-link:hover {
+    color: #B87333;
+    background: rgba(184, 115, 51, 0.05);
+  }
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .nav-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2B2118;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+    text-decoration: none;
+  }
+  .nav-icon:hover {
+    color: #B87333;
+  }
+  .nav-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+  .cart-btn {
+    position: relative;
+  }
+  .cart-count {
+    position: absolute;
+    top: -4px;
+    right: -6px;
+    background: #B87333;
+    color: #F9F6F2;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .cart-count--hidden {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #F9F6F2;
+    z-index: 2000;
+    flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform 0.35s ease;
+    overflow-y: auto;
+  }
+  .mobile-menu--open {
+    display: flex;
+    transform: translateX(0);
+  }
+  .mobile-menu__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #D9CFC4;
+  }
+  .mobile-menu__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #2B2118;
+  }
+  .mobile-menu__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+  }
+  .mobile-menu__item {
+    border-bottom: 1px solid rgba(217, 207, 196, 0.5);
+    position: relative;
+  }
+  .mobile-menu__link {
+    display: block;
+    padding: 16px 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    color: #2B2118;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+  .mobile-menu__expand {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2B2118;
+    padding: 4px;
+  }
+  .mobile-menu__submenu {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: rgba(217, 207, 196, 0.15);
+  }
+  .mobile-menu__submenu-link {
+    display: block;
+    padding: 12px 24px 12px 40px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    color: #8C7E6F;
+    text-decoration: none;
+  }
+  .mobile-menu__actions {
+    padding: 24px;
+    border-top: 1px solid #D9CFC4;
+    display: flex;
+    gap: 24px;
+  }
+  .mobile-menu__action-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    color: #2B2118;
+    text-decoration: none;
+  }
+  .mobile-menu__action-link svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .nav-mobile-toggle {
+      display: flex;
+    }
+    .nav-links {
+      display: none;
+    }
+    .nav-container {
+      padding: 12px 20px;
+    }
+    .logo-text {
+      font-size: 22px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "header",
+  "class": "header-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo max width",
+      "default": 180
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_header",
+      "label": "Enable sticky header",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "announcement_bar_height",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Announcement bar height offset",
+      "default": 40,
+      "info": "Used to offset sticky header below announcement bar"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu",
+      "default": "main-menu"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header"
+    }
+  ]
+}
+{% endschema %}

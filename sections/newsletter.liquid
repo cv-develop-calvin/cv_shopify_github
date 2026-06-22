@@ -1,0 +1,225 @@
+<section class="newsletter" data-section-id="{{ section.id }}">
+  <div class="newsletter-container">
+    <div class="newsletter-content">
+      {% if section.settings.heading != blank %}
+        <h2 class="newsletter-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <div class="newsletter-subheading">{{ section.settings.subheading }}</div>
+      {% endif %}
+      {% form 'customer' %}
+        <div class="newsletter-form">
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="newsletter-form__field">
+            <input
+              type="email"
+              name="contact[email]"
+              class="newsletter-form__input"
+              placeholder="Enter your email address"
+              value="{{ form.email }}"
+              aria-label="Email address"
+              required
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+            >
+            <button type="submit" class="newsletter-form__btn">
+              {{ section.settings.button_text | default: 'Subscribe' }}
+              {% render 'icon-svg', name: 'arrow-right' %}
+            </button>
+          </div>
+          {% if form.posted_successfully? %}
+            <div class="newsletter-form__success">
+              {% render 'icon-svg', name: 'check' %}
+              <span>Thank you for subscribing!</span>
+            </div>
+          {% elsif form.errors %}
+            <div class="newsletter-form__error">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .newsletter {
+    padding: 80px 0;
+    background-color: #2E5A4C;
+    position: relative;
+    overflow: hidden;
+  }
+  .newsletter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(184, 115, 51, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .newsletter-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .newsletter-content {
+    text-align: center;
+  }
+  .newsletter-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #F9F6F2;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .newsletter-subheading {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: #D9CFC4;
+    line-height: 1.6;
+    margin: 0 0 32px;
+  }
+  .newsletter-subheading p {
+    margin: 0;
+  }
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .newsletter-form__field {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    max-width: 500px;
+  }
+  .newsletter-form__input {
+    flex: 1;
+    padding: 16px 20px;
+    border: 1px solid rgba(249, 246, 242, 0.25);
+    border-right: none;
+    background: rgba(249, 246, 242, 0.08);
+    color: #F9F6F2;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    border-radius: 0;
+  }
+  .newsletter-form__input::placeholder {
+    color: #8C7E6F;
+  }
+  .newsletter-form__input:focus {
+    border-color: #B87333;
+    background: rgba(249, 246, 242, 0.12);
+  }
+  .newsletter-form__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 28px;
+    background-color: #B87333;
+    color: #F9F6F2;
+    border: 1px solid #B87333;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+    border-radius: 0;
+  }
+  .newsletter-form__btn:hover {
+    background-color: #a0642a;
+    border-color: #a0642a;
+  }
+  .newsletter-form__btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  .newsletter-form__success {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    color: #B87333;
+  }
+  .newsletter-form__success svg {
+    width: 18px;
+    height: 18px;
+  }
+  .newsletter-form__error {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    color: #B87333;
+  }
+
+  @media (max-width: 768px) {
+    .newsletter-container {
+      padding: 0 20px;
+    }
+    .newsletter-heading {
+      font-size: 28px;
+    }
+    .newsletter-form__field {
+      flex-direction: column;
+    }
+    .newsletter-form__input {
+      border-right: 1px solid rgba(249, 246, 242, 0.25);
+      border-bottom: none;
+    }
+    .newsletter-form__btn {
+      width: 100%;
+      justify-content: center;
+    }
+    .newsletter {
+      padding: 48px 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "class": "newsletter-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join the Knots & Flair Community"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Subscribe to receive exclusive offers, new collection previews, and artisan stories delivered to your inbox.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Subscribe"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,140 @@
+{
+  "general": {
+    "skip_to_content": "Skip to content",
+    "search": "Search",
+    "account": "Account",
+    "cart": "Cart",
+    "menu": "Menu",
+    "close": "Close",
+    "subscribe": "Subscribe",
+    "learn_more": "Learn More",
+    "view_all": "View All",
+    "new": "New",
+    "sale": "Sale",
+    "hot": "Hot",
+    "sold_out": "Sold Out",
+    "add_to_cart": "Add to Cart",
+    "quick_view": "Quick View"
+  },
+  "sections": {
+    "announcement_bar": {
+      "default_text": "Free shipping on all orders over $100"
+    },
+    "header": {
+      "search_placeholder": "Search our store...",
+      "cart_empty": "Your cart is empty",
+      "cart_count_one": "1 item",
+      "cart_count_other": "{{ count }} items"
+    },
+    "footer": {
+      "copyright": "CS Flair. All rights reserved.",
+      "follow_us": "Follow Us",
+      "newsletter_heading": "Join the CS Flair Community",
+      "newsletter_subheading": "Subscribe to receive exclusive offers, new collection previews, and artisan stories."
+    },
+    "hero_banner": {
+      "default_heading": "Handcrafted with Love",
+      "default_subheading": "Discover our artisan jewelry collection, where every piece tells a story of craftsmanship and elegance.",
+      "default_button": "Shop Collection"
+    },
+    "collection_grid": {
+      "heading": "Shop by Category",
+      "view_all_collections": "View All Collections",
+      "products_count": "{{ count }} products"
+    },
+    "featured_products": {
+      "heading": "Featured Pieces",
+      "view_all": "View All Products",
+      "no_products": "No products found in this collection."
+    },
+    "brand_story": {
+      "heading": "Our Story",
+      "default_text": "CS Flair was born from a passion for artisan craftsmanship and timeless design. Each piece in our collection is meticulously handcrafted by skilled artisans using ethically sourced materials, ensuring that every creation is as unique as the person who wears it.",
+      "button": "Learn More"
+    },
+    "features_bar": {
+      "handcrafted_title": "Handcrafted",
+      "handcrafted_description": "Every piece is made by hand",
+      "ethically_sourced_title": "Ethically Sourced",
+      "ethically_sourced_description": "Sustainable materials only",
+      "free_shipping_title": "Free Shipping",
+      "free_shipping_description": "On orders over $100",
+      "gift_wrapping_title": "Gift Wrapping",
+      "gift_wrapping_description": "Complimentary on all orders"
+    },
+    "newsletter": {
+      "heading": "Join the CS Flair Community",
+      "subheading": "Subscribe to receive exclusive offers, new collection previews, and artisan stories.",
+      "button": "Subscribe",
+      "email_placeholder": "Enter your email address",
+      "success_message": "Thank you for subscribing! Welcome to the CS Flair community.",
+      "error_message": "Please enter a valid email address."
+    }
+  },
+  "products": {
+    "from": "from",
+    "compare_at": "Compare at",
+    "added_to_cart": "Added to cart!",
+    "out_of_stock": "Out of Stock",
+    "quantity": "Quantity",
+    "select_options": "Select Options",
+    "description": "Description",
+    "reviews": "Reviews",
+    "related_products": "You May Also Like",
+    "share": "Share",
+    "wishlist_add": "Add to Wishlist",
+    "wishlist_remove": "Remove from Wishlist",
+    "vendor": "Vendor",
+    "sku": "SKU",
+    "material": "Material",
+    "dimensions": "Dimensions"
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "close_menu": "Close menu",
+    "open_menu": "Open menu",
+    "close_cart": "Close cart",
+    "open_cart": "Open cart",
+    "image_of": "Image of {{ alt }}",
+    "loading": "Loading",
+    "error": "Error"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {{ current }} of {{ total }}"
+  },
+  "search": {
+    "heading": "Search Results",
+    "placeholder": "Search our store...",
+    "no_results": "No results found for \"{{ terms }}\"",
+    "results_for": "Results for \"{{ terms }}\"",
+    "view_all": "View all results for \"{{ terms }}\""
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "continue_shopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "total": "Total",
+    "checkout": "Checkout",
+    "update": "Update Cart",
+    "remove": "Remove",
+    "free_shipping_message": "You are only {{ amount }} away from free shipping!",
+    "free_shipping_achieved": "You have earned free shipping!"
+  },
+  "collections": {
+    "all": "All Collections",
+    "sort_by": "Sort by",
+    "sort_featured": "Featured",
+    "sort_best_selling": "Best Selling",
+    "sort_price_asc": "Price, Low to High",
+    "sort_price_desc": "Price, High to Low",
+    "sort_created_desc": "Newest",
+    "filter_by": "Filter by",
+    "clear_all": "Clear All",
+    "no_products": "No products found in this collection."
+  }
+}

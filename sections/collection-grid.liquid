@@ -1,0 +1,239 @@
+<section class="collection-grid-section" data-section-id="{{ section.id }}">
+  <div class="section-container">
+    {% if section.settings.heading != blank or section.settings.subheading != blank %}
+      <div class="section-header">
+        {% if section.settings.heading != blank %}
+          <h2 class="section-title">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.subheading != blank %}
+          <p class="section-subtitle">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="categories-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'collection_card' %}
+          {% assign collection = block.settings.collection %}
+          {% if collection != blank %}
+            <a href="{{ collection.url }}" class="category-card" {{ block.shopify_attributes }}>
+              <div class="category-card__image">
+                {% if block.settings.image != blank %}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 600 }}"
+                    alt="{{ collection.title | escape }}"
+                    width="600"
+                    height="600"
+                    loading="lazy"
+                  >
+                {% elsif collection.image != blank %}
+                  <img
+                    src="{{ collection.image | image_url: width: 600 }}"
+                    alt="{{ collection.title | escape }}"
+                    width="600"
+                    height="600"
+                    loading="lazy"
+                  >
+                {% elsif collection.products.first != blank and collection.products.first.featured_image != blank %}
+                  <img
+                    src="{{ collection.products.first.featured_image | image_url: width: 600 }}"
+                    alt="{{ collection.title | escape }}"
+                    width="600"
+                    height="600"
+                    loading="lazy"
+                  >
+                {% else %}
+                  <div class="category-card__placeholder">
+                    {% render 'icon-svg', name: 'globe' %}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="category-card__content">
+                <h3 class="category-card__title">{{ collection.title }}</h3>
+                <span class="category-card__count">{{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'product', 'products' }}</span>
+              </div>
+            </a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .collection-grid-section {
+    padding: 80px 0;
+    background-color: #F9F6F2;
+  }
+  .section-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 400;
+    color: #2B2118;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .section-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: #8C7E6F;
+    margin: 0;
+    line-height: 1.6;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .category-card {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    aspect-ratio: 3/4;
+    background-color: #D9CFC4;
+    transition: transform 0.4s ease;
+  }
+  .category-card:hover {
+    transform: translateY(-4px);
+  }
+  .category-card__image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .category-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .category-card:hover .category-card__image img {
+    transform: scale(1.05);
+  }
+  .category-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2E5A4C 0%, #2B2118 100%);
+  }
+  .category-card__placeholder svg {
+    width: 48px;
+    height: 48px;
+    color: #D9CFC4;
+    opacity: 0.5;
+  }
+  .category-card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 32px 24px 24px;
+    background: linear-gradient(to top, rgba(43, 33, 24, 0.8) 0%, transparent 100%);
+  }
+  .category-card__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: #F9F6F2;
+    margin: 0 0 4px;
+  }
+  .category-card__count {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #D9CFC4;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 1024px) {
+    .categories-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 480px) {
+    .categories-grid {
+      grid-template-columns: 1fr;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+    .section-container {
+      padding: 0 20px;
+    }
+    .section-title {
+      font-size: 30px;
+    }
+    .collection-grid-section {
+      padding: 48px 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "tag": "section",
+  "class": "collection-grid-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Explore Our Collections"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Each collection is a journey through craftsmanship and artistry."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection card",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Override image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Grid",
+      "blocks": [
+        { "type": "collection_card" },
+        { "type": "collection_card" },
+        { "type": "collection_card" },
+        { "type": "collection_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,222 @@
+<section class="story-section" data-section-id="{{ section.id }}">
+  <div class="story-container">
+    <div class="story-content">
+      {% if section.settings.heading != blank %}
+        <h2 class="story-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="story-text">{{ section.settings.text }}</div>
+      {% endif %}
+      {% if section.settings.stat_1_number != blank or section.settings.stat_2_number != blank or section.settings.stat_3_number != blank %}
+        <div class="story-stats">
+          {% if section.settings.stat_1_number != blank %}
+            <div class="story-stat">
+              <span class="story-stat__number">{{ section.settings.stat_1_number }}</span>
+              <span class="story-stat__label">{{ section.settings.stat_1_label }}</span>
+            </div>
+          {% endif %}
+          {% if section.settings.stat_2_number != blank %}
+            <div class="story-stat">
+              <span class="story-stat__number">{{ section.settings.stat_2_number }}</span>
+              <span class="story-stat__label">{{ section.settings.stat_2_label }}</span>
+            </div>
+          {% endif %}
+          {% if section.settings.stat_3_number != blank %}
+            <div class="story-stat">
+              <span class="story-stat__number">{{ section.settings.stat_3_number }}</span>
+              <span class="story-stat__label">{{ section.settings.stat_3_label }}</span>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+    {% if section.settings.image != blank %}
+      <div class="story-image">
+        <img
+          src="{{ section.settings.image | image_url: width: 800 }}"
+          alt="{{ section.settings.heading | escape }}"
+          width="800"
+          height="auto"
+          loading="lazy"
+        >
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .story-section {
+    padding: 80px 0;
+    background-color: #F9F6F2;
+  }
+  .story-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .story-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .story-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 400;
+    color: #2B2118;
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .story-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: #8C7E6F;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .story-text p {
+    margin: 0 0 16px;
+  }
+  .story-text p:last-child {
+    margin-bottom: 0;
+  }
+  .story-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 16px;
+    padding-top: 32px;
+    border-top: 1px solid #D9CFC4;
+  }
+  .story-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .story-stat__number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: #B87333;
+    line-height: 1;
+  }
+  .story-stat__label {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #8C7E6F;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .story-image {
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .story-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .story-image:hover img {
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 1024px) {
+    .story-container {
+      gap: 40px;
+    }
+    .story-heading {
+      font-size: 32px;
+    }
+  }
+  @media (max-width: 768px) {
+    .story-container {
+      grid-template-columns: 1fr;
+      padding: 0 20px;
+      gap: 32px;
+    }
+    .story-stats {
+      gap: 24px;
+    }
+    .story-stat__number {
+      font-size: 28px;
+    }
+    .story-section {
+      padding: 48px 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Brand Story",
+  "tag": "section",
+  "class": "brand-story-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Story"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>CS Flair was born from a passion for preserving ancient jewelry-making traditions while infusing them with contemporary aesthetics. Each piece in our collection is handcrafted by skilled artisans who have inherited techniques passed down through generations.</p><p>We believe that true luxury lies in the imperfections of the handmade, the story behind every curve and contour, and the connection between the creator and the wearer.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_number",
+      "label": "Stat 1 number",
+      "default": "15+"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_label",
+      "label": "Stat 1 label",
+      "default": "Years of Craft"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_number",
+      "label": "Stat 2 number",
+      "default": "2000+"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_label",
+      "label": "Stat 2 label",
+      "default": "Artisan Pieces"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_number",
+      "label": "Stat 3 number",
+      "default": "50+"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_label",
+      "label": "Stat 3 label",
+      "default": "Master Artisans"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Story"
+    }
+  ]
+}
+{% endschema %}

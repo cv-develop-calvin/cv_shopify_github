@@ -1,0 +1,264 @@
+{
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "name": "Announcement Bar",
+      "settings": {
+        "text": "Free shipping on orders over $50 | Handcrafted with love",
+        "link": "",
+        "background_color": "#2B2118",
+        "text_color": "#F9F6F2"
+      }
+    },
+    "header": {
+      "type": "header",
+      "name": "Header",
+      "settings": {
+        "logo": null,
+        "logo_max_width": 180,
+        "sticky_header": true,
+        "announcement_bar_height": 40,
+        "menu": "main-menu"
+      }
+    },
+    "hero-banner": {
+      "type": "hero-banner",
+      "name": "Hero Banner",
+      "settings": {
+        "heading": "Where Ancient Craft Meets Modern Style",
+        "subheading": "Discover our handcrafted artisan jewelry collection, where every piece tells a story of heritage and elegance.",
+        "cta_text": "Explore Collections",
+        "cta_link": "/collections/all",
+        "secondary_cta_text": "Learn More",
+        "secondary_cta_link": "/pages/about",
+        "background_image": null,
+        "overlay_opacity": 70,
+        "height": "large"
+      }
+    },
+    "collection-grid": {
+      "type": "collection-grid",
+      "name": "Collection Grid",
+      "settings": {
+        "heading": "Explore Our Collections",
+        "subheading": "Each collection is a journey through craftsmanship and artistry."
+      },
+      "blocks": {
+        "collection-card-1": {
+          "type": "collection_card",
+          "name": "Collection 1",
+          "settings": {
+            "collection": "",
+            "image": null
+          }
+        },
+        "collection-card-2": {
+          "type": "collection_card",
+          "name": "Collection 2",
+          "settings": {
+            "collection": "",
+            "image": null
+          }
+        },
+        "collection-card-3": {
+          "type": "collection_card",
+          "name": "Collection 3",
+          "settings": {
+            "collection": "",
+            "image": null
+          }
+        },
+        "collection-card-4": {
+          "type": "collection_card",
+          "name": "Collection 4",
+          "settings": {
+            "collection": "",
+            "image": null
+          }
+        }
+      },
+      "block_order": [
+        "collection-card-1",
+        "collection-card-2",
+        "collection-card-3",
+        "collection-card-4"
+      ]
+    },
+    "featured-products": {
+      "type": "featured-products",
+      "name": "Featured Products",
+      "settings": {
+        "heading": "New Arrivals",
+        "subheading": "Discover our latest handcrafted pieces, fresh from the artisan workshop.",
+        "products_to_show": 4,
+        "columns_desktop": 4
+      },
+      "blocks": {
+        "product-1": {
+          "type": "product",
+          "name": "Product 1",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product-2": {
+          "type": "product",
+          "name": "Product 2",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product-3": {
+          "type": "product",
+          "name": "Product 3",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product-4": {
+          "type": "product",
+          "name": "Product 4",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "product-1",
+        "product-2",
+        "product-3",
+        "product-4"
+      ]
+    },
+    "brand-story": {
+      "type": "brand-story",
+      "name": "Brand Story",
+      "settings": {
+        "heading": "Our Story",
+        "text": "<p>CS Flair was born from a passion for preserving ancient jewelry-making traditions while infusing them with contemporary aesthetics. Each piece in our collection is handcrafted by skilled artisans who have inherited techniques passed down through generations.</p><p>We believe that true luxury lies in the imperfections of the handmade, the story behind every curve and contour, and the connection between the creator and the wearer.</p>",
+        "image": null,
+        "stat_1_number": "15+",
+        "stat_1_label": "Years of Craft",
+        "stat_2_number": "2000+",
+        "stat_2_label": "Artisan Pieces",
+        "stat_3_number": "50+",
+        "stat_3_label": "Master Artisans"
+      }
+    },
+    "features-bar": {
+      "type": "features-bar",
+      "name": "Features Bar",
+      "settings": {},
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "name": "Secure Payment",
+          "settings": {
+            "icon": "shield",
+            "title": "Secure Payment",
+            "description": "Industry-standard encryption protects every transaction."
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "name": "Gift Wrapping",
+          "settings": {
+            "icon": "gift",
+            "title": "Gift Wrapping",
+            "description": "Complimentary artisan gift wrapping on all orders."
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "name": "Worldwide Shipping",
+          "settings": {
+            "icon": "globe",
+            "title": "Worldwide Shipping",
+            "description": "Free international shipping on orders over $50."
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "name": "Handcrafted",
+          "settings": {
+            "icon": "heart",
+            "title": "Handcrafted",
+            "description": "Every piece is made by hand with love and care."
+          }
+        }
+      },
+      "block_order": [
+        "feature-1",
+        "feature-2",
+        "feature-3",
+        "feature-4"
+      ]
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "settings": {
+        "heading": "Join the Knots & Flair Community",
+        "subheading": "<p>Subscribe to receive exclusive offers, new collection previews, and artisan stories delivered to your inbox.</p>",
+        "button_text": "Subscribe"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "name": "Footer",
+      "settings": {
+        "footer_logo": null,
+        "brand_description": "Handcrafted artisan jewelry, where ancient craft meets modern elegance. Each piece tells a story of tradition and beauty.",
+        "show_social": true,
+        "social_facebook": "",
+        "social_instagram": "",
+        "social_pinterest": "",
+        "social_twitter": "",
+        "copyright_text": "All rights reserved.",
+        "show_payment_icons": true
+      },
+      "blocks": {
+        "footer-links-1": {
+          "type": "footer_link_column",
+          "name": "Shop",
+          "settings": {
+            "title": "Shop",
+            "link_list": "footer"
+          }
+        },
+        "footer-links-2": {
+          "type": "footer_link_column",
+          "name": "Support",
+          "settings": {
+            "title": "Support",
+            "link_list": "footer-support"
+          }
+        },
+        "footer-links-3": {
+          "type": "footer_link_column",
+          "name": "Company",
+          "settings": {
+            "title": "Company",
+            "link_list": "footer-company"
+          }
+        }
+      },
+      "block_order": [
+        "footer-links-1",
+        "footer-links-2",
+        "footer-links-3"
+      ]
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header",
+    "hero-banner",
+    "collection-grid",
+    "featured-products",
+    "brand-story",
+    "features-bar",
+    "newsletter",
+    "footer"
+  ]
+}

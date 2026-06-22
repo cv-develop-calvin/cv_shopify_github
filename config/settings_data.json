@@ -1,0 +1,228 @@
+{
+  "current": {
+    "color_schemes": {
+      "background": "#F9F6F2",
+      "foreground": "#2B2118",
+      "primary": "#B87333",
+      "secondary": "#2E5A4C",
+      "accent": "#D9CFC4"
+    },
+    "header_background": "#F9F6F2",
+    "header_text": "#2B2118",
+    "footer_background": "#2B2118",
+    "footer_text": "#F9F6F2",
+    "heading_font": {
+      "family": "Cormorant Garamond",
+      "weight": 600
+    },
+    "body_font": {
+      "family": "Jost",
+      "weight": 400
+    },
+    "logo_max_width": 180,
+    "cart_type": "page",
+    "show_cart_count": true
+  },
+  "presets": {
+    "default": {
+      "color_schemes": {
+        "background": "#F9F6F2",
+        "foreground": "#2B2118",
+        "primary": "#B87333",
+        "secondary": "#2E5A4C",
+        "accent": "#D9CFC4"
+      },
+      "header_background": "#F9F6F2",
+      "header_text": "#2B2118",
+      "footer_background": "#2B2118",
+      "footer_text": "#F9F6F2",
+      "heading_font": {
+        "family": "Cormorant Garamond",
+        "weight": 600
+      },
+      "body_font": {
+        "family": "Jost",
+        "weight": 400
+      },
+      "logo_max_width": 180,
+      "cart_type": "page",
+      "show_cart_count": true
+    }
+  },
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on all orders over $100",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement-0"
+      ],
+      "settings": {
+        "show_announcement": true,
+        "text_color": "#2B2118",
+        "background_color": "#D9CFC4"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "sticky_header": true,
+        "show_search": true,
+        "show_account": true,
+        "logo_position": "center"
+      }
+    },
+    "hero-banner": {
+      "type": "hero-banner",
+      "settings": {
+        "heading": "Handcrafted with Love",
+        "subheading": "Discover our artisan jewelry collection, where every piece tells a story of craftsmanship and elegance.",
+        "button_text": "Shop Collection",
+        "button_link": "/collections/all",
+        "overlay_opacity": 30,
+        "layout": "full_width"
+      }
+    },
+    "collection-grid": {
+      "type": "collection-grid",
+      "settings": {
+        "heading": "Shop by Category",
+        "columns_desktop": 3,
+        "columns_mobile": 2
+      }
+    },
+    "featured-products": {
+      "type": "featured-products",
+      "settings": {
+        "heading": "Featured Pieces",
+        "collection": "featured",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "columns_mobile": 2,
+        "show_vendor": true,
+        "show_price": true,
+        "enable_quick_view": true
+      }
+    },
+    "brand-story": {
+      "type": "brand-story",
+      "settings": {
+        "heading": "Our Story",
+        "text": "CS Flair was born from a passion for artisan craftsmanship and timeless design. Each piece in our collection is meticulously handcrafted by skilled artisans using ethically sourced materials, ensuring that every creation is as unique as the person who wears it.",
+        "image_position": "left",
+        "button_text": "Learn More",
+        "button_link": "/pages/about"
+      }
+    },
+    "features-bar": {
+      "type": "features-bar",
+      "blocks": {
+        "feature-0": {
+          "type": "feature",
+          "settings": {
+            "icon": "gem",
+            "title": "Handcrafted",
+            "description": "Every piece is made by hand"
+          }
+        },
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "icon": "leaf",
+            "title": "Ethically Sourced",
+            "description": "Sustainable materials only"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "icon": "truck",
+            "title": "Free Shipping",
+            "description": "On orders over $100"
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "icon": "gift",
+            "title": "Gift Wrapping",
+            "description": "Complimentary on all orders"
+          }
+        }
+      },
+      "block_order": [
+        "feature-0",
+        "feature-1",
+        "feature-2",
+        "feature-3"
+      ],
+      "settings": {
+        "layout": "grid"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Join the CS Flair Community",
+        "subheading": "Subscribe to receive exclusive offers, new collection previews, and artisan stories.",
+        "button_text": "Subscribe",
+        "background_color": "#2E5A4C",
+        "text_color": "#F9F6F2"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-menu-0": {
+          "type": "footer_menu",
+          "settings": {
+            "menu_title": "Shop",
+            "menu": "footer-shop"
+          }
+        },
+        "footer-menu-1": {
+          "type": "footer_menu",
+          "settings": {
+            "menu_title": "Company",
+            "menu": "footer-company"
+          }
+        },
+        "footer-menu-2": {
+          "type": "footer_menu",
+          "settings": {
+            "menu_title": "Support",
+            "menu": "footer-support"
+          }
+        }
+      },
+      "block_order": [
+        "footer-menu-0",
+        "footer-menu-1",
+        "footer-menu-2"
+      ],
+      "settings": {
+        "show_social_icons": true,
+        "show_payment_icons": true,
+        "copyright_text": "CS Flair. All rights reserved."
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header",
+    "hero-banner",
+    "collection-grid",
+    "featured-products",
+    "brand-story",
+    "features-bar",
+    "newsletter",
+    "footer"
+  ]
+}

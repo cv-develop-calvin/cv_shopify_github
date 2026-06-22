@@ -1,0 +1,154 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "CS Flair",
+    "theme_author": "CS Flair Team",
+    "theme_version": "1.0.0",
+    "settings": []
+  },
+  {
+    "name": "colors",
+    "settings": [
+      {
+        "type": "color_scheme_multi",
+        "id": "color_schemes",
+        "label": "Color schemes",
+        "default": {
+          "background": "#F9F6F2",
+          "foreground": "#2B2118",
+          "primary": "#B87333",
+          "secondary": "#2E5A4C",
+          "accent": "#D9CFC4"
+        }
+      },
+      {
+        "type": "color",
+        "id": "header_background",
+        "label": "Header background",
+        "default": "#F9F6F2"
+      },
+      {
+        "type": "color",
+        "id": "header_text",
+        "label": "Header text",
+        "default": "#2B2118"
+      },
+      {
+        "type": "color",
+        "id": "footer_background",
+        "label": "Footer background",
+        "default": "#2B2118"
+      },
+      {
+        "type": "color",
+        "id": "footer_text",
+        "label": "Footer text",
+        "default": "#F9F6F2"
+      }
+    ]
+  },
+  {
+    "name": "typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "heading_font",
+        "label": "Heading font",
+        "default": {
+          "family": "Cormorant Garamond",
+          "weight": 600
+        }
+      },
+      {
+        "type": "font_picker",
+        "id": "body_font",
+        "label": "Body font",
+        "default": {
+          "family": "Jost",
+          "weight": 400
+        }
+      }
+    ]
+  },
+  {
+    "name": "logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "label": "Logo max width",
+        "min": 50,
+        "max": 300,
+        "step": 5,
+        "unit": "px",
+        "default": 180
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image"
+      }
+    ]
+  },
+  {
+    "name": "cart",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "cart_type",
+        "label": "Cart type",
+        "options": [
+          {
+            "value": "page",
+            "label": "Page"
+          },
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          },
+          {
+            "value": "ajax",
+            "label": "Ajax"
+          }
+        ],
+        "default": "page"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_cart_count",
+        "label": "Show cart count",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "social_media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "social_pinterest",
+        "label": "Pinterest URL"
+      },
+      {
+        "type": "url",
+        "id": "social_twitter",
+        "label": "Twitter URL"
+      }
+    ]
+  }
+]
